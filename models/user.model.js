@@ -65,16 +65,9 @@ exports.getUserByRole = async (role) => {
   });
 };
 
-exports.updateUser = async (id, name, email, role, hashedPassword) => {
-  const query =
-    "UPDATE users SET name = ?, email = ?, role = ?, password = ? WHERE id = ?";
-  const [result] = await db.query(query, [
-    name,
-    email,
-    role,
-    hashedPassword,
-    id,
-  ]);
+exports.updateUser = async (id, name, email, role) => {
+  const query = "UPDATE users SET name = ?, email = ?, role = ? WHERE id = ?";
+  const [result] = await db.query(query, [name, email, role, id]);
   return new Promise((resolve, reject) => {
     if (result) {
       resolve(result);

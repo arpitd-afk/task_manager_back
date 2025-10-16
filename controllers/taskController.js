@@ -51,14 +51,14 @@ const getTaskById = async (req, res) => {
     if (!taskId) {
       return res
         .status(400)
-        .json({ statuscode: 1, Statusmessage: "Task ID is required" });
+        .json({ statuscode: 1, Statusmessage: "Task ID is Required" });
     }
 
     const task = await Task.getTaskById(taskId);
     if (task.length === 0) {
       return res
         .status(404)
-        .json({ statuscode: 1, Statusmessage: "Task not found" });
+        .json({ statuscode: 1, Statusmessage: "Task Not Found" });
     }
     res.status(200).json(task[0]);
   } catch (error) {

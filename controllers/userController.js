@@ -167,11 +167,12 @@ const getSingleUser = async (req, res) => {
       return res.status(404).send("User Id not found");
     }
     const mydata = await User.getUserById(userId);
-    res.status(200).json({
-      statuscode: 0,
-      statusmessage: "Success",
-      data: mydata,
-    });
+    res.status(200).json(mydata[0]);
+    // res.status(200).json({
+    //   statuscode: 0,
+    //   statusmessage: "Success",
+    //   data: mydata[0],
+    // });
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
@@ -190,18 +191,17 @@ const updateUser = async (req, res) => {
         statusmessage: "User Id not found",
       });
     }
-    const { name, email, role, password } = req.body;
-    if (!userId || !name || !role || !email || !password) {
+    const { name, email, role } = req.body;
+    if (!userId || !name || !role || !email) {
       return res.status(400).send("Invalid input fields");
     }
-
-    const hashedPassword = await bcrypt.hash(password, 2);
-    await User.updateUser(userId, name, email, role, hashedPassword);
-    res.status(200).send(`User updated with ID: ${userId}`);
+    // const hashedPassword = await bcrypt.hash(password, 2);
+    await User.updateUser(userId, name, email, role);
+    res.status(200).send(`User Updated With ID: ${userId}`);
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
-      error: "Failed to update user",
+      error: "Failed to Update User",
       details: error.message,
     });
   }
@@ -240,7 +240,7 @@ const getSingleUserByRole = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
-      error: "Failed to fetch user by role",
+      error: "Failed to Fetch User By Role",
       details: error.message,
     });
   }
