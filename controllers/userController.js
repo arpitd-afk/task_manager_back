@@ -35,9 +35,7 @@ const loginUser = async (req, res) => {
     };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1d" });
 
-    // console.log("User ID being signed:", user.id);
-
-    // Send token in cookie
+    // Sending token in cookie
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
@@ -53,8 +51,6 @@ const loginUser = async (req, res) => {
         role: user.role,
       },
     });
-
-    // console.log(`Token passed from backend login controller ${token}`);
   } catch (error) {
     res.status(500).json({
       statuscode: 1,

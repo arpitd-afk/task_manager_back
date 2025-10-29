@@ -51,6 +51,20 @@ exports.getUserById = async (id) => {
   });
 };
 
+exports.getUserBySlug = async (slug) => {
+  const result = await db.query(
+    "SELECT id, name, email,role FROM users WHERE slug = ?",
+    [slug]
+  );
+  return new Promise((resolve, reject) => {
+    if (result) {
+      resolve(result);
+    } else {
+      reject("Error fetching user by Slug");
+    }
+  });
+};
+
 exports.getUserByRole = async (role) => {
   const result = await db.query(
     "SELECT id, name, email, role FROM users WHERE role = ?",
