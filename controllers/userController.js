@@ -206,7 +206,6 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log("Deleting user with ID:", userId);
     if (!userId) {
       return res.status(400).send("User Id not found");
     }

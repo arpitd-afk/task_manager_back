@@ -17,3 +17,9 @@ router.put("/updateuser/:id", authToken, UserController.updateUser);
 router.delete("/deleteuser/:id", authToken, UserController.deleteUser);
 
 module.exports = router;
+// https://cashkaro.trackier.co/acquisition?
+//     click_id=654747
+//     &security_token=f11b814723dafa61aeec
+//     &sale_amount=819
+//     &txn_id=21707
+//     &coupon_code=BEYOUNG100
