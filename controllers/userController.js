@@ -26,7 +26,7 @@ const loginUser = async (req, res) => {
       });
     }
 
-    // Generate JWT
+    // Generate JWT token
     const payload = {
       id: user.id,
       email: user.email,
@@ -128,7 +128,7 @@ const getCurrentUser = async (req, res) => {
     if (!email) {
       return res.status(404).json({
         statuscode: 1,
-        statusmessage: "Email Not Found",
+        statusmessage: "Email not found",
       });
     }
     let user = await User.getUserByEmail(email);

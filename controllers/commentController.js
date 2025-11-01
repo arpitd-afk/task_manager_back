@@ -8,24 +8,24 @@ const addComment = async (req, res) => {
     if (!ticket_id || !comment_text) {
       return res.status(400).json({
         statuscode: 1,
-        Statusmessage: "Ticket ID And Comment Text Are Required",
+        Statusmessage: "Ticket ID and comment text are required",
       });
     }
     if (!user_id) {
       return res
         .status(400)
-        .json({ statuscode: 1, Statusmessage: "User ID Is Required" });
+        .json({ statuscode: 1, Statusmessage: "User ID is required" });
     }
     const result = await Comment.addComment(ticket_id, user_id, comment_text);
     res.status(201).json({
       statuscode: 0,
-      Statusmessage: "Comment Added",
+      Statusmessage: "Comment added",
       commentId: result.insertId,
     });
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
-      error: "Failed To Add Comment",
+      error: "Failed to add comment",
       details: error.message,
     });
   }
@@ -64,7 +64,7 @@ const editComment = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
-      error: "Failed to update comment",
+      error: "Failed to update Comment",
       details: error.message,
     });
   }
@@ -83,7 +83,7 @@ const deleteComment = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
-      error: "Failed to delete comment",
+      error: "Failed to delete Comment",
       details: error.message,
     });
   }
@@ -97,24 +97,24 @@ const replyToComment = async (req, res) => {
     if (!commentId || !reply_text) {
       return res.status(400).json({
         statuscode: 1,
-        Statusmessage: "Comment ID and Reply Text Are Required",
+        Statusmessage: "Comment ID and reply text are required",
       });
     }
     if (!user_id) {
       return res
         .status(400)
-        .json({ statuscode: 1, Statusmessage: "User ID Is Required" });
+        .json({ statuscode: 1, Statusmessage: "User ID is required" });
     }
     const result = await Comment.replyToComment(commentId, user_id, reply_text);
     res.status(201).json({
       statuscode: 0,
-      Statusmessage: "Reply Added Successfully",
+      Statusmessage: "Reply added successfully",
       replyId: result.insertId,
     });
   } catch (error) {
     res.status(500).json({
       statuscode: 1,
-      error: "Failed to Add Reply",
+      error: "Failed to add reply",
       details: error.message,
     });
   }

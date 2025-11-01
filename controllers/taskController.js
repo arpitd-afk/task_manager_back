@@ -7,7 +7,7 @@ const createTask = async (req, res) => {
       return res.status(400).json({
         statuscode: 1,
         Statusmessage:
-          "Ticket ID , Task title, Description and Assigned to are required",
+          "Ticket ID , task title, description and assigned to are required",
       });
     }
 
@@ -51,14 +51,14 @@ const getTaskById = async (req, res) => {
     if (!taskId) {
       return res
         .status(400)
-        .json({ statuscode: 1, Statusmessage: "Task ID is Required" });
+        .json({ statuscode: 1, Statusmessage: "Task ID is required" });
     }
 
     const task = await Task.getTaskById(taskId);
     if (task.length === 0) {
       return res
         .status(404)
-        .json({ statuscode: 1, Statusmessage: "Task Not Found" });
+        .json({ statuscode: 1, Statusmessage: "Task not found" });
     }
     res.status(200).json(task[0]);
   } catch (error) {
